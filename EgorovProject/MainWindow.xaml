@@ -1,0 +1,55 @@
+﻿<Window x:Class="EgorovProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:EgorovProject"
+        mc:Ignorable="d"
+        Title="Словарь" Height="600" Width="1100" WindowStyle="ThreeDBorderWindow" Background="#FF472964">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border HorizontalAlignment="Center" Margin="10" CornerRadius="20" Background="#FFFFC97B" VerticalAlignment="Center" Width="660" Height="500" Grid.Column="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="LightGray" ShadowDepth="10"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Слова" HorizontalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold" Margin="20"/>
+                <TextBox TextChanged="SearchTextBox_TextChanged" Foreground="White" FontSize="14" x:Name="Search" materialDesign:HintAssist.Hint="Поиск..." Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="30 0"/>
+                <Button x:Name="SearchBtn" Width="100" Margin="10" Content="Поиск" Click="SearchBtn_Click"></Button>
+                <TextBlock Foreground="White" x:Name="resultTextBlock" FontSize="16"  Margin="30 10" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="Список слов в словаре" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="16"></TextBlock>
+                <ScrollViewer>
+                    <ListBox Height="250"  Margin="20" Width="600" x:Name="dictionaryListBox" HorizontalAlignment="Center" Foreground="BlueViolet" FontSize="16">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Word}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+                
+
+            </StackPanel>
+        </Border>
+        <Border HorizontalAlignment="Center" CornerRadius="20" Height="500" Grid.Column="1" Width="260" Background="#FF8057D6" Margin="10" VerticalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="LightGray" ShadowDepth="10"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Управление словарем" HorizontalAlignment="Center" Foreground="White" FontSize="16" Margin="20"/>
+                
+                <Label Margin="20 0" Foreground="White" FontSize="10" VerticalAlignment="Center">Добавить слово в словарь</Label>
+                <TextBox x:Name="addWord" materialDesign:HintAssist.Hint="Введите слово" FontSize="14" Foreground="white" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="20 10"></TextBox>
+                <TextBox x:Name="descriptionWord" materialDesign:HintAssist.Hint="Введите описание для слова"  FontSize="14" Foreground="white" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="20 0"></TextBox>
+                <Button Click="addWordBtn_Click" Content="Добавить слово" x:Name="addWordBtn" Style="{StaticResource MaterialDesignFlatLightButton}" Width="100" HorizontalAlignment="Left" Margin="20 0"></Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
